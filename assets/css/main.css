@@ -67,6 +67,29 @@ input, select, textarea {
 	-ms-appearance: none;
 	appearance: none;
 }
+
+/* links */
+.github-icon {
+	display: inline-block;
+	text-decoration: none !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	-webkit-tap-highlight-color: transparent; /* für Mobilgeräte */
+	line-height: 0;
+}
+
+  /* Für spezielle Fokuszustände wie in Chrome/Opera */
+.github-icon:focus,
+.github-icon:focus-visible,
+.github-icon:active {
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	text-decoration: none !important;
+}
+
+
 /* zertifikate*/
 
 /* für project bilder */
