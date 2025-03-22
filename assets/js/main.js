@@ -165,7 +165,46 @@
 			}
 		});
 
+		document.addEventListener('DOMContentLoaded', function() {
+			// Für mobile Geräte: Dropdown-Toggle-Funktionalität hinzufügen
+			const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+			
+			dropdownToggles.forEach(toggle => {
+				toggle.addEventListener('click', function(e) {
+					if (window.innerWidth <= 768) {
+						e.preventDefault();
+						const dropdown = this.closest('.dropdown');
+						dropdown.classList.toggle('active');
+					}
+				});
+			});
 		
+			// Smart positioning für Dropdown-Menüs
+			function positionDropdowns() {
+				const dropdowns = document.querySelectorAll('.dropdown');
+				
+				dropdowns.forEach(dropdown => {
+					// Zurücksetzen der Klassen
+					dropdown.classList.remove('open-up');
+					
+					const dropdownContent = dropdown.querySelector('.dropdown-content');
+					const rect = dropdown.getBoundingClientRect();
+					const spaceBelow = window.innerHeight - rect.bottom;
+					
+					// Wenn der Platz unten weniger als 200px ist, öffne das Dropdown nach oben
+					if (spaceBelow < 200 && rect.top > 250) {
+						dropdown.classList.add('open-up');
+					}
+				});
+			}
+			
+			// Positionierung bei Laden und bei Größenänderung aktualisieren
+			positionDropdowns();
+			window.addEventListener('resize', positionDropdowns);
+			
+			// Optional: Bei Scrollen aktualisieren
+			window.addEventListener('scroll', positionDropdowns);
+		});
 
 
 })(jQuery);

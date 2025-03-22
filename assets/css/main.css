@@ -79,7 +79,6 @@ input, select, textarea {
 	line-height: 0;
 }
 
-  /* Für spezielle Fokuszustände wie in Chrome/Opera */
 .github-icon:focus,
 .github-icon:focus-visible,
 .github-icon:active {
@@ -91,6 +90,299 @@ input, select, textarea {
 
 
 /* zertifikate*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 2;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    color: #2a2a2a;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title img {
+    height: 30px;
+    width: auto;
+}
+
+.certificate-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.certificate-card {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #e0e0e0;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/*.certificate-thumbnail {
+    height: 180px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}*/
+
+.certificate-thumbnail img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.certificate-info {
+    padding: 15px;
+}
+
+.certificate-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.certificate-date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.certificate-description {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.certificate-button {
+    display: inline-block;
+    background-color: #e20074; /* Telekom Magenta */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.certificate-button:hover {
+    background-color: #c5006b;
+}
+
+/* Spezielle Styling für die Telekom-Sektion */
+.telekom-section .section-title {
+    color: #e20074;
+    border-bottom-color: #e20074;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .certificate-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 92%;
+    }
+    .section {
+        padding: 1.5rem;
+    }
+    .certificate-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.certificate-thumbnail {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e20074;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* Dropdown für PDF-Sammlung */
+.certificate-thumbnail {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e20074;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* Dropdown für PDF-Sammlung */
+.certificate-thumbnail {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e20074;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* Dropdown für PDF-Sammlung */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle::after {
+    content: "▼";
+    margin-left: 6px;
+    font-size: 0.8em;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 220px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 100;
+    margin-top: 5px;
+    border: 1px solid #e0e0e0;
+    left: 0;
+}
+
+/* Fügt einen unsichtbaren Bereich hinzu, der den Hover-Zustand erhält */
+.dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px; /* Überbrückung zwischen Button und Dropdown */
+    background-color: transparent;
+}
+
+/* Wichtig: Stellt sicher, dass der Container die Dropdown-Inhalte nicht abschneidet */
+.certificate-card {
+    overflow: visible !important;
+}
+
+.certificate-info {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Zeigt das Dropdown-Menü an, wenn über den Button oder das Dropdown-Menü selbst gehovert wird */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #e20074;
+}
+
+/* Alternativer Ansatz: Verwende Click statt Hover */
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+/* Für Touch-Geräte */
+@media (max-width: 768px) {
+    .dropdown-toggle::after {
+        content: "+";
+        margin-left: 6px;
+    }
+    
+    .dropdown-content {
+        position: static;
+        display: none;
+        margin-top: 10px;
+        box-shadow: none;
+        border: none;
+        background-color: #f9f9f9;
+    }
+    
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+    
+    /* JavaScript erforderlich für Mobile Toggle */
+    .certificate-button.dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
 
 /* für project bilder */
 
