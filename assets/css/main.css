@@ -145,6 +145,7 @@ body {
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
     border: 1px solid #e0e0e0;
+	
 }
 
 .certificate-card:hover {
@@ -263,24 +264,6 @@ body {
     font-weight: bold;
 }
 
-/* Dropdown für PDF-Sammlung */
-.certificate-thumbnail {
-    position: relative;
-}
-
-.badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #e20074;
-    color: white;
-    padding: 4px 8px;
-    font-size: 0.75rem;
-    border-radius: 12px;
-    font-weight: bold;
-}
-
-/* Dropdown für PDF-Sammlung */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -311,18 +294,16 @@ body {
     left: 0;
 }
 
-/* Fügt einen unsichtbaren Bereich hinzu, der den Hover-Zustand erhält */
 .dropdown::after {
     content: "";
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    height: 20px; /* Überbrückung zwischen Button und Dropdown */
+    height: 20px;
     background-color: transparent;
 }
 
-/* Wichtig: Stellt sicher, dass der Container die Dropdown-Inhalte nicht abschneidet */
 .certificate-card {
     overflow: visible !important;
 }
@@ -332,7 +313,6 @@ body {
     overflow: visible !important;
 }
 
-/* Zeigt das Dropdown-Menü an, wenn über den Button oder das Dropdown-Menü selbst gehovert wird */
 .dropdown:hover .dropdown-content,
 .dropdown-content:hover {
     display: block;
@@ -350,11 +330,6 @@ body {
 .dropdown-content a:hover {
     background-color: #f5f5f5;
     color: #e20074;
-}
-
-/* Alternativer Ansatz: Verwende Click statt Hover */
-.dropdown.show .dropdown-content {
-    display: block;
 }
 
 /* Für Touch-Geräte */
@@ -386,167 +361,245 @@ body {
 
 /* für project bilder */
 
-* {box-sizing:border-box}
-
-.project-icon {
-    width: 100px; /* Feste Breite */
-    height: 100px; /* Feste Höhe */
-    border-radius: 50%; /* Runde Form */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white; /* Hintergrund für bessere Sichtbarkeit */
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
-    overflow: hidden;
+* {
+	box-sizing: border-box;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
 
-/* Sicherstellen, dass das Icon-Bild korrekt skaliert wird */
-.product_icon img {
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
+.project-icon {
+	width: clamp(60px, 10vw, 100px);
+	height: clamp(60px, 10vw, 100px);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	position: relative;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-icon img {
+	width: 60%;
+	height: 60%;
+	object-fit: contain;
+	transition: transform 0.3s ease;
+}
+
+.project-icon:hover img {
+	transform: scale(1.1);
 }
 
 .project-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Zentriert Icon & Text */
-    text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 10px;
 }
 
-
-/* Navigation Dots */
 .carousel-dots {
-    text-align: center;
-    margin-top: 10px;
+	text-align: center;
+	margin-top: 15px;
+	position: relative;
+	z-index: 5;
 }
 
 .dot {
-    cursor: pointer;
-    height: 12px;
-    width: 12px;
-    margin: 5px;
+	cursor: pointer;
+	height: clamp(8px, 1.5vw, 12px); /* Responsive Größe */
+	width: clamp(8px, 1.5vw, 12px); /* Responsive Größe */
+	margin: 0 5px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-	display: -webkit-inline-block;
+    display: -webkit-inline-block;
     transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-    background-color: #717171;
+	background-color: #717171;
 }
 
-/* Slideshow-Container */
 .slideshow-container {
-    width: 750px;
-    height: 500px;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    text-align: center;
-    display: flex;
+	width: min(750px, 95%); /* Responsive Breite */
+	height: min(500px, 80vh); /* Responsive Höhe */
+	position: relative;
+	background: #d5e7dc;
+	margin: auto;
+	overflow: hidden;
+	text-align: center;
+	display: flex;
 	display: -webkit-flex;
-    align-items: center; /* Vertikale Zentrierung */
-    justify-content:  flex-start; /* Horizontale Zentrierung */
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	align-items: center;
+	justify-content: flex-start;
+	transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+				box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+	border-radius: 15px;
 }
 
-/* Für kleine Bildschirme (Handys) */
+@media (max-width: 992px) {
+	.slideshow-container {
+	width: 90%;
+	height: 450px;
+	}
+}
+
 @media (max-width: 768px) {
-    .slideshow-container {
-        width: 95vw;
-        height: 40vh;
-        max-width: 100%;
-    }
+	.slideshow-container {
+	width: 95%;
+	height: min(400px, 60vh);
+	border-radius: 12px;
+	}
 }
 
-/* Für sehr kleine Geräte (z. B. Smartphones) */
 @media (max-width: 480px) {
-    .slideshow-container {
-        width: 100vw;
-        height: auto; /* Höhe passt sich automatisch an */
-        max-width: 100%;
-        padding: 10px; /* Etwas Abstand */
-    }
+	.slideshow-container {
+	width: 95%;
+	height: min(350px, 70vh);
+	padding: 15px 10px;
+	border-radius: 10px;
+	}
 }
 
 .slideshow-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+	transform: translateY(-5px);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
-
-/* Verstecke nicht aktive Text-Slides */
 .textSlide {
-    display: none;
-	display: -webkit-none;
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: linear-gradient(135deg, #e6f2ea, #d5e7dc);
+	border-radius: inherit;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	padding: clamp(20px, 5vw, 50px) clamp(15px, 8vw, 80px);
+	box-sizing: border-box;
+	flex: 0 0 100%;
+	transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+				opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	white-space: normal;
+	opacity: 0;
+    visibility: hidden;
     position: absolute;
-    top: 0;
-    left: 0;
-    background: #d5e7dc;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 50px 80px;
-    box-sizing: border-box;
-	flex: 0 0 100%; /* Jedes Slide nimmt 100% der Container-Breite */
-	transition: transform 0.5s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Text in der Mitte */
-    align-items: center;
-	white-space: normal; /* TEXT DARF UMBRECHEN */
+    transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+
+.slideshow-container.transitioning {
+	box-shadow: none;
 }
 
 
-/* Stellt sicher, dass das aktive Slide korrekt angezeigt wird */
+.textSlide.active {
+	opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease;
+}
+
 .textSlide:first-child {
-    transform: translateX(0%);
+	transform: translateX(0%);
 }
 
 .prev, .next {
-cursor: pointer;
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-background: none;
-border: none;
-font-size: 35px;
-color: #bbb;
-transition: color 0.3s ease;
-z-index: 10;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: #bbb;
+	width: 40px;
+	height: 40px;
+	outline: none;
+    box-shadow: none;
+	padding: 0;
+	border-radius: 50%;
+	font-size: clamp(20px, 4vw, 35px);
+	color: #555;
+	transition: color 0.3s ease;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.7;
+}
+
+
+@media (max-width: 768px) {
+	.prev, .next {
+	width: 35px;
+	height: 35px;
+	}
 }
 
 .prev {
-left: 10px;
+	left: 10px;
 }
 
 .next {
-right: 10px;
+	right: 10px;
 }
 
+.prev:hover, .next:hover {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #333;
+	opacity: 1;
+	transform: translateY(-50%) scale(1.1);
+}
 
 .fade {
-animation-name: fade;
-animation-duration: 1.5s;
+	animation: fade 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 @keyframes fade {
-from { opacity: .4; }
-to { opacity: 1; }
+	from {
+	opacity: 0;
+	transform: scale(0.95);
+	}
+	to {
+	opacity: 1;
+	transform: scale(1);
+	}
 }
 
-@-webkit-keyframes fade { /* Für Opera */
-    from {opacity: 0.4;}
-    to {opacity: 1;}
+@keyframes slideIn {
+	from {
+	transform: translateX(100%);
+	opacity: 0;
+	}
+	to {
+	transform: translateX(0);
+	opacity: 1;
+	}
+}
+
+.slideIn {
+	animation: slideIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slideOut {
+	from {
+	transform: translateX(0);
+	opacity: 1;
+	}
+	to {
+	transform: translateX(-40%);
+	opacity: 0;
+	}
+}
+
+.slideOut {
+	animation: slideOut 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* Basic */
-
-
 	@-ms-viewport {
 		width: device-width;
 	}
@@ -2433,7 +2486,7 @@ to { opacity: 1; }
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #8bd184 !important;
+			background-color: #91ac9b !important;
 			color: #ffffff !important;
 			box-shadow: none;
 		}
@@ -2443,7 +2496,7 @@ to { opacity: 1; }
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #9dddab !important;
+				background-color: #b5e0be !important;
 			}
 
 			input[type="submit"].primary:active,

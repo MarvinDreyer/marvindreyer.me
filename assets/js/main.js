@@ -109,60 +109,93 @@
 
 		}
 
-		document.addEventListener("DOMContentLoaded", function () {
-			let slideIndex = 1;
-			showSlides(slideIndex);
-		
-			// Event-Listener für die Pfeil-Navigation
-			document.querySelector(".prev").addEventListener("click", function () {
-				plusSlides(-1);
-			});
-			document.querySelector(".next").addEventListener("click", function () {
-				plusSlides(1);
-			});
+		document.addEventListener('DOMContentLoaded', function() {
+			let slideIndex = 0;
+			const slides = document.querySelectorAll('.textSlide');
+			const dots = document.querySelectorAll('.dot');
+			const prevBtn = document.querySelector('.prev');
+			const nextBtn = document.querySelector('.next');
 			
-			let dots = document.querySelectorAll(".dot");
-			dots.forEach((dot, index) => {
-				dot.addEventListener("click", function () {
-					currentSlide(index + 1); // +1 weil Index bei 0 startet, Slides aber bei 1
+			// Event-Listener für die Buttons
+			prevBtn.addEventListener('click', () => changeSlide(-1));
+			nextBtn.addEventListener('click', () => changeSlide(1));
+			
+			// Event-Listener für die Dots
+			dots.forEach(dot => {
+				dot.addEventListener('click', function() {
+					const slideNumber = parseInt(this.getAttribute('data-slide'));
+					showSlide(slideNumber);
 				});
 			});
+			
+			// Funktion zum Ändern des Slides
+			function changeSlide(n) {
+				const currentSlide = slideIndex;
+				const newIndex = (slideIndex + n + slides.length) % slides.length;
 
-			// Funktion für Vorwärts/Rückwärts Navigation
-			function plusSlides(n) {
-				showSlides(slideIndex += n);
+				if (currentSlide === newIndex) return;
+			
+				// Entferne alte Klassen
+				slides.forEach(slide => {
+					slide.classList.remove('slideIn', 'slideOut', 'active');
+				});
+			
+				// Zeige altes Slide für Animation
+				slides[currentSlide].classList.add('slideOut');
+				slides[newIndex].classList.add('slideIn');
+			
+				// Verstecke altes Slide nach der Animation (z. B. nach 600ms)
+				setTimeout(() => {
+					slides[currentSlide].classList.remove('slideOut', 'active');
+					slides[newIndex].classList.add('active');
+				}, 600);
+			
+				slideIndex = newIndex;
+				updateDots();
+
+				const container = document.querySelector('.slideshow-container');
 			}
-		
-			// Funktion für direkte Navigation per Dots
-			function currentSlide(n) {
-				showSlides(slideIndex = n);
+			
+			function showSlide(n) {
+				const currentSlide = slideIndex;
+				const newIndex = n;
+			
+				if (currentSlide === newIndex) return;
+			
+				const container = document.querySelector('.slideshow-container');
+			
+				// Animation vorbereiten
+				slides.forEach(slide => {
+					slide.classList.remove('slideIn', 'slideOut', 'active');
+				});
+			
+				// Deaktiviere box-shadow
+				container.classList.add('transitioning');
+			
+				// Aktuelle Slide raus
+				slides[currentSlide].classList.add('slideOut');
+			
+				// 👉 UPDATE: erst Index setzen
+				slideIndex = newIndex;
+			
+				// Slidewechsel
+				setTimeout(() => {
+					slides[currentSlide].classList.remove('active', 'slideOut');
+					slides[slideIndex].classList.add('active', 'slideIn');
+			
+					// ✅ Jetzt Dots aktualisieren
+					updateDots();
+			
+					container.classList.remove('transitioning');
+				}, 600);
 			}
-		
-			function showSlides(n) {
-				let slides = document.getElementsByClassName("textSlide");
-				let dots = document.getElementsByClassName("dot");
-		
-				if (n > slides.length) {
-					slideIndex = 1;
-				}
-				if (n < 1) {
-					slideIndex = slides.length;
-				}
-		
-				// Alle Slides verstecken
-				for (let i = 0; i < slides.length; i++) {
-					slides[i].style.display = "none";
-				}
-		
-				// Alle Dots inaktiv setzen
-				for (let i = 0; i < dots.length; i++) {
-					dots[i].classList.remove("active");
-				}
-		
-				// Aktuelles Slide anzeigen
-				slides[slideIndex - 1].style.display = "block";
-				dots[slideIndex - 1].classList.add("active");
+			
+			function updateDots() {
+				dots.forEach((dot, index) => {
+					dot.classList.toggle('active', index === slideIndex);
+				});
 			}
+			
 		});
 
 		document.addEventListener('DOMContentLoaded', function() {
