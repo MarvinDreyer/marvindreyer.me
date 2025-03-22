@@ -193,7 +193,7 @@ body {
 
 .certificate-button {
     display: inline-block;
-    background-color: #e20074; /* Telekom Magenta */
+    background-color: #5f9c6f; /* Telekom Magenta */
     color: white;
     padding: 8px 12px;
     border-radius: 4px;
@@ -203,8 +203,24 @@ body {
 }
 
 .certificate-button:hover {
+    background-color: #7eb18b;
+}
+
+.certificate-button-telekom {
+    display: inline-block;
+    background-color: #e20074; /* Telekom Magenta */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.certificate-button-telekom:hover {
     background-color: #c5006b;
 }
+
 
 /* Spezielle Styling für die Telekom-Sektion */
 .telekom-section .section-title {
@@ -245,11 +261,6 @@ body {
     font-size: 0.75rem;
     border-radius: 12px;
     font-weight: bold;
-}
-
-/* Dropdown für PDF-Sammlung */
-.certificate-thumbnail {
-    position: relative;
 }
 
 .badge {
@@ -2486,17 +2497,17 @@ body {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #91ac9b !important;
+			background-color: #5f9c6f !important;
 			color: #ffffff !important;
 			box-shadow: none;
 		}
-
+	
 			input[type="submit"].primary:hover,
 			input[type="reset"].primary:hover,
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #b5e0be !important;
+				background-color: #7eb18b !important;
 			}
 
 			input[type="submit"].primary:active,
