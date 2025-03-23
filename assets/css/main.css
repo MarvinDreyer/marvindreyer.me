@@ -594,6 +594,49 @@ body {
 	animation: slideOut 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+.github-link.disabled:hover {
+	background-color: #f5f5f5;
+	color: #333;
+	transform: none;
+	box-shadow: none;
+	display: inline-block;
+}
+
+.github-icon {
+	margin-right: 8px;
+	transition: transform 0.3s ease;
+}
+
+.github-link:hover .github-icon {
+	transform: rotate(360deg);
+}
+
+  /* Anpassungen für responsives Design */
+@media (max-width: 768px) {
+	.github-link {
+	padding: 6px 12px;
+	font-size: 13px;
+	}
+	
+	.github-icon {
+	width: 20px;
+	height: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.github-link {
+	padding: 5px 10px;
+	font-size: 12px;
+	margin-top: 10px;
+	}
+	
+	.github-icon {
+	width: 18px;
+	height: 18px;
+	}
+}
+
 /* Basic */
 	@-ms-viewport {
 		width: device-width;
